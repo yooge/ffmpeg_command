@@ -1,6 +1,8 @@
 #
-#### FFmpeg编译
-[编译libffmepgcmd.so](https://github.com/kalu-github/ffmpegcmd_android_build)
+#### libffmepgcmd.so编译源码
+```
+https://github.com/kalu-github/ffmpegcmd_android_build
+```
 
 #
 #### 编译环境
