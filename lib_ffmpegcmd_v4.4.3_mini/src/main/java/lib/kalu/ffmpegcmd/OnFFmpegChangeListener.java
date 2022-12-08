@@ -1,8 +1,5 @@
 package lib.kalu.ffmpegcmd;
 
-import androidx.annotation.Keep;
-
-@Keep
 public interface OnFFmpegChangeListener {
 
     default void start() {

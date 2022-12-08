@@ -23,14 +23,16 @@ android {
 
     buildTypes {
         release {
-            zipAlignEnabled false
-            shrinkResources false
-            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
         debug {
-            zipAlignEnabled false
-            shrinkResources false
-            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources true
+            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
     namespace 'com.kalu.ffmpeg'
@@ -49,7 +51,7 @@ repositories {
 }
 
 dependencies {
-    implementation files('libs/lib_ffmpegcmd_v4.4.3_mini_release_20221104.aar')
+    implementation files('libs/lib_ffmpegcmd_v4.4.3_mini_release_20221208.aar')
 //    implementation files('libs/lib_ffmpegcmd_v5.1.1_mini_release_20221031.aar')
 //    api project(path: ':lib_ffmpegcmd_v4.4.3_mini')
 //    implementation files('libs/lib_ffmpegcmd_v4.4.2_release_20220917.aar')

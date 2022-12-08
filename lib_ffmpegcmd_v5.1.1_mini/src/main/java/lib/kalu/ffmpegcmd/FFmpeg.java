@@ -1,10 +1,7 @@
 package lib.kalu.ffmpegcmd;
 
-import androidx.annotation.Keep;
-
 import java.util.List;
 
-@Keep
 public final class FFmpeg {
 
     static {
