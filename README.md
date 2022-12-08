@@ -1,6 +1,8 @@
 #
-#### FFmpeg编译
-[编译libffmepgcmd.so](https://github.com/kalu-github/ffmpegcmd_android_build)
+#### libffmepgcmd.so编译源码
+```
+https://github.com/kalu-github/ffmpegcmd_android_build
+```
 
 #
 #### 编译环境
@@ -10,6 +12,10 @@ deepin + ndk14b
 
 #
 #### 更新记录
+```
+2022-1-04
+1. 新增ffmpeg4.4.3 arm64
+```
 ```
 2022-10-31
 1. 新增ffmpeg4.4.3
