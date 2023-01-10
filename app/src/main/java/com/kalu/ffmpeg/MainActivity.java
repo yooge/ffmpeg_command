@@ -86,6 +86,18 @@ public class MainActivity extends AppCompatActivity implements Handler.Callback 
             }
         });
 
+        // ts
+        findViewById(R.id.button_ts).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String absolutePath = getApplicationContext().getCacheDir().getAbsolutePath();
+//                String absolutePath = "/storage/emulated/0";
+                String path = absolutePath + "/v25.mp4";
+                String s = FFmpegUtils.toM3u8(path, absolutePath + "/");
+                Log.e("FFM", "cmd => " + s);
+            }
+        });
+
         // button_create_null_mp3
         findViewById(R.id.button_create_null_mp3).setOnClickListener(new View.OnClickListener() {
             @Override

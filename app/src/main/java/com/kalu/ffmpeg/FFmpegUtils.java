@@ -19,6 +19,54 @@ import lib.kalu.ffmpegcmd.OnFFmpegChangeListener;
 
 public final class FFmpegUtils {
 
+    /**
+     * 先用ffmpeg把abc.mp4文件转换为abc.ts文件：
+     * <p>
+     * ffmpeg -y -i abc.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb abc.ts
+     * <p>
+     * <p>
+     * <p>
+     * 再用ffmpeg把abc.ts文件切片并生成playlist.m3u8文件，5秒一个切片：
+     * <p>
+     * ffmpeg -i abc.ts -c copy -map 0 -f segment -segment_list playlist.m3u8 -segment_time 5 abc%03d.ts
+     * <p>
+     * <p>
+     * ffmpeg -i Wildlife.wmv -codec:v libx264 -codec:a mp3 -map 0 -f ssegment -segment_format mpegts -segment_list ./m3u8/index.m3u8 -segment_time 10 ./m3u8/’%03d.ts’
+     *
+     * @return
+     */
+    public static String toM3u8(@NonNull String fromPath, @NonNull String toPath) {
+        try {
+            ArrayList<String> arrays = new ArrayList<>();
+            arrays.add("-y");
+            arrays.add("-i");
+            arrays.add(fromPath);
+            arrays.add("-codec:v");
+            arrays.add("libx264");
+            arrays.add("-codec:a");
+            arrays.add("mp3");
+            arrays.add("-map");
+            arrays.add("0");
+            arrays.add("-f");
+            arrays.add("segment");
+            arrays.add("-segment_format");
+            arrays.add("mpegts");
+            arrays.add("-segment_list");
+            arrays.add(toPath + "index.m3u8");
+            arrays.add("-segment_time");
+            arrays.add("1");
+            arrays.add(toPath + "’%03d.ts");
+            int execute = FFmpeg.executeCmd(arrays);
+            if (execute != 0)
+                throw new IllegalArgumentException("ffmpeg fail");
+            Log.e("FFmpegUtils", "toM3u8 => result = " + toPath + "index.m3u8");
+            return toPath + "index.m3u8";
+        } catch (Exception e) {
+            Log.e("FFmpegUtils",  "toM3u8 => fail");
+            return null;
+        }
+    }
+
     public static boolean createNullMusic(Context context, @NonNull float second, @NonNull String savePath) {
         try {
             Log.e("FFmpegUtils", "createNullMusic[1] => second = " + second + ", savePath = " + savePath);
