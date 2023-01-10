@@ -82,6 +82,17 @@
         android:textSize="14sp" />
 
     <com.kalu.ffmpeg.FocusButton
+        android:id="@+id/button_is"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@android:color/darker_gray"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:text="增加关键帧"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+    <com.kalu.ffmpeg.FocusButton
         android:id="@+id/button_ts"
         android:layout_width="match_parent"
         android:layout_height="45dp"

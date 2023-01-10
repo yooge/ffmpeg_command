@@ -6,7 +6,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import java.io.Console;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +17,41 @@ import lib.kalu.ffmpegcmd.FFmpeg;
 import lib.kalu.ffmpegcmd.OnFFmpegChangeListener;
 
 public final class FFmpegUtils {
+
+    /**
+     * ffmpeg.exe -i "D:\in.mp4" -c:v libx264 -preset superfast -x264opts keyint=25 -acodec copy -f mp4 "D:\out.mp4"
+     *
+     * @param fromPath
+     * @param toPath
+     * @return
+     */
+    public static String superfastI(@NonNull String fromPath, @NonNull String toPath) {
+        try {
+            ArrayList<String> arrays = new ArrayList<>();
+            arrays.add("-y");
+            arrays.add("-i");
+            arrays.add(fromPath);
+            arrays.add("-c:v");
+            arrays.add("libx264");
+            arrays.add("-preset");
+            arrays.add("superfast");
+            arrays.add("-x264opts");
+            arrays.add("keyint=25");
+            arrays.add("-acodec");
+            arrays.add("copy");
+            arrays.add("-f");
+            arrays.add("mp4");
+            arrays.add(toPath);
+            int execute = FFmpeg.executeCmd(arrays);
+            if (execute != 0)
+                throw new IllegalArgumentException("ffmpeg fail");
+            Log.e("FFmpegUtils", "superfastI => result = " + toPath + "index.m3u8");
+            return toPath + "index.m3u8";
+        } catch (Exception e) {
+            Log.e("FFmpegUtils", "superfastI => fail");
+            return null;
+        }
+    }
 
     /**
      * 先用ffmpeg把abc.mp4文件转换为abc.ts文件：
@@ -62,7 +96,7 @@ public final class FFmpegUtils {
             Log.e("FFmpegUtils", "toM3u8 => result = " + toPath + "index.m3u8");
             return toPath + "index.m3u8";
         } catch (Exception e) {
-            Log.e("FFmpegUtils",  "toM3u8 => fail");
+            Log.e("FFmpegUtils", "toM3u8 => fail");
             return null;
         }
     }
@@ -103,7 +137,7 @@ public final class FFmpegUtils {
 
                 @Override
                 public void progress(float progress) {
-                    Log.e("FFmpegUtils", "progress => progress = "+progress);
+                    Log.e("FFmpegUtils", "progress => progress = " + progress);
                 }
 
                 @Override
